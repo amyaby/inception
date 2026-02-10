@@ -14,3 +14,100 @@ services:
       - wordpress_volume:/var/www/html
     depends_on:
       - wordpress
+ wordpress:
+
+    build: ./requirements/wordpress
+
+    container_name: wordpress
+
+    restart: unless-stopped
+
+    env_file: .env
+
+    networks:
+
+      - inception_network
+
+    volumes:
+
+      - wordpress_volume:/var/www/html
+
+    environment:
+
+      - WORDPRESS_DB_HOST=mariadb
+
+      - WORDPRESS_DB_USER=${MYSQL_USER}
+
+      - WORDPRESS_DB_PASSWORD=${MYSQL_PASSWORD}
+
+      - WORDPRESS_DB_NAME=${MYSQL_DATABASE}
+
+    depends_on:
+
+      - mariadb
+
+
+
+  mariadb:
+
+    build: ./requirements/mariadb
+
+    container_name: mariadb
+
+    restart: unless-stopped
+
+    env_file: .env
+
+    networks:
+
+      - inception_network
+
+    volumes:
+
+      - mariadb_volume:/var/lib/mysql
+
+    environment:
+
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+
+      - MYSQL_USER=${MYSQL_USER}
+
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+
+
+
+networks:
+
+  inception_network:
+
+    driver: bridge
+
+
+
+volumes:
+
+  mariadb_volume:
+
+    driver: local
+
+    driver_opts:
+
+      type: none
+
+      o: bind
+
+      device: /home/im_ane/data/mariadb
+
+  wordpress_volume:
+
+    driver: local
+
+    driver_opts:
+
+      type: none
+
+      o: bind
+
+      device: /home/im_ane/data/wordpress
