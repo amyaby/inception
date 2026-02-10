@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  nginx:
+    build: ./requirements/nginx
+    container_name: nginx
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "443:443"
+    networks:
+      - inception_network
+    volumes:
+      - wordpress_volume:/var/www/html
+    depends_on:
+      - wordpress

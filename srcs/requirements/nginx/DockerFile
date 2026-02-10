@@ -1,0 +1,24 @@
+# On part d'Alpine (version légère et sécurisée)
+FROM alpine:3.18
+
+# Installation de NGINX et OpenSSL
+# 'apk' est le gestionnaire de paquets d'Alpine (au lieu de apt-get)
+RUN apk update && apk upgrade && apk add --no-cache nginx openssl
+
+# Création du dossier pour les certificats
+RUN mkdir -p /etc/nginx/ssl
+
+# Génération du certificat SSL (La ligne est identique à Debian)
+RUN openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt -keyout /etc/nginx/ssl/inception.key -subj "/C=MA/ST=Settat/L=Settat/O=42/OU=42/CN=amyaby.42.fr/UID=amyaby"
+
+# Alpine a besoin de ce dossier pour faire tourner Nginx correctement
+RUN mkdir -p /run/nginx
+
+# On copie ta config
+COPY conf/nginx.conf /etc/nginx/http.d/default.conf
+
+# On expose le port 443 (Optionnel mais recommandé pour la clarté)
+EXPOSE 443
+
+# Lancement de Nginx au premier plan
+CMD ["nginx", "-g", "daemon off;"]
