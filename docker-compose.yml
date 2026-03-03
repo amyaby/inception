@@ -1,0 +1,13 @@
+services:
+  nginx:
+    build: ./srcs/requirements/nginx
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - "443:443"
+    networks:
+      - inception_network
+
+networks:
+  inception_network:
+    driver: bridge
