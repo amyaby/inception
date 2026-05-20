@@ -1673,4 +1673,4 @@ docker system prune -af               # remove EVERYTHING (containers, images, v
 ![alt text](image-6.png)
 
 
-*Built with ❤️ at 42 School — Imane Abasala*
+*For more enhancements or infos don't hesitate to contact me *
