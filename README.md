@@ -29,7 +29,7 @@
 18. [Key Rules from the Subject](#18-key-rules-from-the-subject)
 
 ---
-![alt text](image.png)
+![alt text](images/image.png)
 ## 1. What is Inception?
 
 Inception is a system administration project from 42 School. The goal is to deploy a complete, secure, containerized web infrastructure using Docker — built entirely from scratch, with no pre-built DockerHub images (except Alpine or Debian as base).
@@ -1499,8 +1499,8 @@ docker exec -it mariadb sh
   exit
 exit
 ```
-![alt text](image-7.png)
-![alt text](image-8.png)
+![alt text](images/image-7.png)
+![alt text](images/image-8.png)
 ### Verify data persistence
 
 ```bash
@@ -1666,11 +1666,11 @@ docker system prune -af               # remove EVERYTHING (containers, images, v
 ---
 
 ## Demonstration
-![alt text](image-2.png)
-![alt text](image-3.png)
-![alt text](image-4.png)
-![alt text](image-5.png)
-![alt text](image-6.png)
+![alt text](images/image-2.png)
+![alt text](images/image-3.png)
+![alt text](images/image-4.png)
+![alt text](images/image-5.png)
+![alt text](images/image-6.png)
 
 
 *For more enhancements or infos don't hesitate to contact me *
